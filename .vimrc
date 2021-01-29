@@ -1,139 +1,131 @@
-" Comments in Vimscript start with a `"`.
-
-" If you open this file in Vim, it'll be syntax highlighted for you.
-
-" Vim is based on Vi. Setting `nocompatible` switches from the default
-" Vi-compatibility mode and enables useful Vim functionality. This
-" configuration option turns out not to be necessary for the file named
-" '~/.vimrc', because Vim automatically enters nocompatible mode if that file
-" is present. But we're including it here just in case this config file is
-" loaded some other way (e.g. saved as `foo`, and then Vim started with
-" `vim -u foo`).
+"switches from VI-mode to Vim-mode
 set nocompatible
 
-" Turn on syntax highlighting.
+"turn on syntax highlighting.
 syntax on
 
-" Disable the default Vim startup message.
+"disable the default Vim startup message.
 set shortmess+=I
 
-" Disables the bell sound effect
+"disables the bell sound effect
 set noerrorbells
 
-" Show line numbers.
-set number
-
-" This enables relative line numbering mode. With both number and
-" relativenumber enabled, the current line shows the true line number, while
-" all other lines (above and below) are numbered relative to the current line.
-" This is useful because you can tell, at a glance, what count is needed to
-" jump up or down to a particular line, by {count}k to go up or {count}j to go
-" down.
+"show relative line numbers
 set relativenumber
+"show current line number (instead of 0)
+set nu
 
-" Always show the status line at the bottom, even if you only have one window open.
+"only highlights during search, removes highlight after search
+set nohlsearch
+
+"always show the status line at the bottom, even if you only have one window open.
 set laststatus=2
 
-" The backspace key has slightly unintuitive behavior by default. For example,
-" by default, you can't backspace before the insertion point set with 'i'.
-" This configuration makes backspace behave more reasonably, in that you can
-" backspace over anything.
+"can backspace over everything
 set backspace=indent,eol,start
 
-" By default, Vim doesn't let you hide a buffer (i.e. have a buffer that isn't
-" shown in any window) that has unsaved changes. This is to prevent you from "
-" forgetting about unsaved changes and then quitting e.g. via `:qa!`. We find
-" hidden buffers helpful enough to disable this protection. See `:help hidden`
-" for more information on this.
+"allow hidden buffers
 set hidden
 
-" This setting makes search case-insensitive when all characters in the string
-" being searched are lowercase. However, the search becomes case-sensitive if
-" it contains any capital letters. This makes searching more convenient.
+"makes search case-insensitive if the search is all lower case, but
+"case-sensitive if there is upper-case letters in the search
 set ignorecase
 set smartcase
 
-" Enable searching as you type, rather than waiting till you press enter.
+"incremental search, i.e. searching while you type instead of waiting till
+"after you've pressed enter
 set incsearch
 
-" Unbind some useless/annoying default key bindings.
+"unbind some useless/annoying default key bindings.
 nmap Q <Nop> " 'Q' in normal mode enters Ex mode. You almost never want this.
 
-" Disable audible bell because it's annoying.
+"disable audible bell because it's annoying.
 set noerrorbells visualbell t_vb=
 
-" Enable mouse support. You should avoid relying on this too much, but it can
-" sometimes be convenient.
+"enable mouse support
 set mouse+=a
 
-" This modifies how tab and indenting works. It sets the tab to be length of 4 
-" spaces (I think default is 8 spaces). softtabstop makes the tab key (in insert
-" mode) insert a combination of spaces to simulate tab stops at this width.
+"makes the tab equal to 4 spaces
 set tabstop=4
 set softtabstop=0
 
-" Makes sure vim doesn't insert spaces instead of tab-characters. 
+"use tabs instead of spaces
 set noexpandtab
-
-" Decides the size of an indent. Setting this to the same value as
-" tabstop makes it so that an indent corresponds to single tab.
+"set size of an indent to the same size as a tab
 set shiftwidth=4
-
-" Tries to automatically indent for you.
+"tries to automatically indent
 set smartindent
 
-" No text wrapping, i.e. if text goes off the screen, it continues going off
-" off the screen without wrapping over.
+"no text-wrapping
 set nowrap
 
-" Makes vim refrains from creating swap- and backup-files
+"no swap- and backup-files
 set noswapfile
 set nobackup
-
-" Saves files and directories so that you can undo your current one. This makes
-" up for not having swap- and backup-files.
+"saves files and directories so that changes can be un-done. This is instead
+"of swap- and backup-files
 set undodir=~/.vim/undodir
 set undofile
 
-" Custom colorscheme from GitHub - github.com/fcpg/vim-orbital
-set background=dark
-colorscheme iceberg
+"starts scrolling the screen when the cursor is 8 away from the top or bottom
+set scrolloff=8
 
-" Gives column 80 a different color
+"creates a vertical line at 80 characters, this is the standard size for
+"wrapping
 set colorcolumn=80
 highlight ColorColumn ctermbg=233
 
-" Highlights the current line
+"underlines the current line
 set cursorline
 
 filetype on
 
-" Try to prevent bad habits like using the arrow keys for movement. This is
-" not the only possible bad habit. For example, holding down the h/j/k/l keys
-" for movement, rather than using more efficient movement commands, is also a
-" bad habit. The former is enforceable through a .vimrc, while we don't know
-" how to prevent the latter.
-" Do this in normal mode...
-nnoremap <Left>  :echoe "Use h"<CR>
-nnoremap <Right> :echoe "Use l"<CR>
-nnoremap <Up>    :echoe "Use k"<CR>
-nnoremap <Down>  :echoe "Use j"<CR>
-" ...and in insert mode
-inoremap <Left>  <ESC>:echoe "Use h"<CR>
-inoremap <Right> <ESC>:echoe "Use l"<CR>
-inoremap <Up>    <ESC>:echoe "Use k"<CR>
-inoremap <Down>  <ESC>:echoe "Use j"<CR>
 
-" PLUGINS
+"####### PLUGINS #######
 call plug#begin('~/.vim/plugged')
 
-Plug 'valloric/youcompleteme'
-Plug 'joshdick/onedark.vim'
-Plug 'w0ng/vim-hybrid'
-Plug 'fenetikm/falcon'
-Plug 'divan/incognito'
-Plug 'cocopon/iceberg.vim'
-Plug 'cocopon/iceberg.vim'
-Plug 'fatih/vim-go', {'do': 'GoUpdateBinaries'}
+Plug 'jremmen/vim-ripgrep'
+Plug 'tpope/vim-fugitive'
+Plug 'vim-utils/vim-man'
+Plug 'lyuts/vim-rtags'
+Plug 'mbbill/undotree'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'tpope/vim-surround'
+Plug 'vim-airline/vim-airline'
+Plug 'git@github.com:kien/ctrlp.vim.git'
+Plug 'junegunn/fzf', {'do': { -> fzf#install() }}
+Plug 'preservim/nerdtree'
+
+"colorschemes
+Plug 'habamax/vim-colors-lessthan'
+Plug 'pineapplegiant/spaceduck'
+
+"coconut-oil
+Plug 'gruvbox-community/gruvbox'
 
 call plug#end()
+
+"colorscheme
+set background=dark
+set termguicolors
+colorscheme gruvbox
+
+"##### plugin helpers #####
+
+if executable ('rg')
+	let g:rg_derive_root='true'
+endif
+
+let g:netrw_browse_split = 2
+let g:netrw_banner = 0
+let g:netrw_winsize = 25
+
+let g:ctrlp_use_caching = 0
+
+"##### BINDS #####
+let mapleader = " "
+nnoremap <leader>n :NERDTreeFocus<CR>
+nnoremap <C-n> :NERDTree<CR>
+nnoremap <C-t> :NERDTreeToggle<CR>
+nnoremap <C-f> :NERDTreeFind<CR>
+
