@@ -81,7 +81,7 @@ set cursorline
 filetype on
 
 
-"####### PLUGINS #######
+"####### PLUGINS (vim-plug) #######
 call plug#begin('~/.vim/plugged')
 
 Plug 'jremmen/vim-ripgrep'
@@ -95,10 +95,12 @@ Plug 'vim-airline/vim-airline'
 Plug 'git@github.com:kien/ctrlp.vim.git'
 Plug 'junegunn/fzf', {'do': { -> fzf#install() }}
 Plug 'preservim/nerdtree'
+Plug 'rust-lang/rust.vim'
 
 "colorschemes
 Plug 'habamax/vim-colors-lessthan'
-Plug 'pineapplegiant/spaceduck'
+Plug 'caglartoklu/borlandp.vim'
+Plug 'sainnhe/sonokai'
 
 "coconut-oil
 Plug 'gruvbox-community/gruvbox'
@@ -108,7 +110,7 @@ call plug#end()
 "colorscheme
 set background=dark
 set termguicolors
-colorscheme gruvbox
+colorscheme sonokai
 
 "##### plugin helpers #####
 
@@ -122,10 +124,10 @@ let g:netrw_winsize = 25
 
 let g:ctrlp_use_caching = 0
 
+"##### For rust plugin ######
+syntax enable
+filetype plugin indent on
+
 "##### BINDS #####
 let mapleader = " "
-nnoremap <leader>n :NERDTreeFocus<CR>
-nnoremap <C-n> :NERDTree<CR>
-nnoremap <C-t> :NERDTreeToggle<CR>
-nnoremap <C-f> :NERDTreeFind<CR>
-
+nnoremap <leader>n :NERDTreeToggle<CR>
