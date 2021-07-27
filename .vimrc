@@ -89,18 +89,19 @@ Plug 'tpope/vim-fugitive'
 Plug 'vim-utils/vim-man'
 Plug 'lyuts/vim-rtags'
 Plug 'mbbill/undotree'
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'ycm-core/YouCompleteMe'
 Plug 'tpope/vim-surround'
 Plug 'vim-airline/vim-airline'
 Plug 'git@github.com:kien/ctrlp.vim.git'
 Plug 'junegunn/fzf', {'do': { -> fzf#install() }}
 Plug 'preservim/nerdtree'
 Plug 'rust-lang/rust.vim'
+Plug 'sheerun/vim-polyglot'
 
 "colorschemes
 Plug 'habamax/vim-colors-lessthan'
-Plug 'caglartoklu/borlandp.vim'
 Plug 'sainnhe/sonokai'
+Plug 'sainnhe/everforest'
 
 "coconut-oil
 Plug 'gruvbox-community/gruvbox'
@@ -108,9 +109,10 @@ Plug 'gruvbox-community/gruvbox'
 call plug#end()
 
 "colorscheme
+let g:everforest_background="soft"
 set background=dark
 set termguicolors
-colorscheme sonokai
+colorscheme everforest
 
 "##### plugin helpers #####
 
