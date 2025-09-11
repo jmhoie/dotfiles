@@ -18,7 +18,7 @@ set noerrorbells
 set novisualbell
 set t_vb=
 set tm=500
-hi colorcolumn ctermbg=grey
+hi colorcolumn ctermbg=darkgrey
 set colorcolumn=80
 
 " COLORS AND FONTS
